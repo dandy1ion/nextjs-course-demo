@@ -34,7 +34,9 @@ export async function getStaticPaths() {
 	client.close();
 
 	return {
-		fallback: false, //paths contains all supported values (404 error = other values)
+		fallback: "blocking", //true(empty page first then data comes)
+		//or blocking (data collected first then page created)
+		// false = paths contains all supported values (404 error = other values)
 		//usually generate array dynamically instead of hardcoding
 		paths: meetups.map((meetup) => ({ params: { meetupId: meetup._id.toString() } })),
 	};
